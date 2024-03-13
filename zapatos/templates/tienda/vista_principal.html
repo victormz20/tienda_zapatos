@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #555;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tienda de Zapatos</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
+        <label for="cantidad">Cantidad:</label><br>
+        <input type="number" id="cantidad" name="cantidad"><br>
+        <label for="proveedor">Proveedor:</label><br>
+        <input type="text" id="proveedor" name="proveedor"><br>
+        <label for="precio_total">Precio Total:</label><br>
+        <input type="number" id="precio_total" name="precio_total" step="0.01"><br>
+        <input type="submit" value="Agregar Zapato">
+    </form>
+
+    {% if zapato_id %}
+        <a href="{% url 'detalle_zapato' id=zapato_id %}">Ver detalles del último zapato agregado</a>
+    {% endif %}
+
+    <script>
+    window.onload = function() {
+        document.body.style.backgroundColor = "#f0f0f0";
+        var inputs = document.getElementsByTagName('input');
+        for(var i = 0; i < inputs.length; i++) {
+            inputs[i].style.width = "100%";
+            inputs[i].style.padding = "12px 20px";
+            inputs[i].style.margin = "8px 0";
+            inputs[i].style.boxSizing = "border-box";
+            inputs[i].style.border = "2px solid #555";
+            inputs[i].style.borderRadius = "4px";
+        }
+        var h1s = document.getElementsByTagName('h1');
+        for(var i = 0; i < h1s.length; i++) {
+            h1s[i].style.color = "#333";
+            h1s[i].style.fontFamily = "'Arial', sans-serif";
+        }
+    }
+    </script>
+</body>
+</html>
